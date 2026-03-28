@@ -1,20 +1,74 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# QResto - Платформа для ресторана: QR-меню и цифровая админка 🚀
 
-# Run and deploy your AI Studio app
+Современное веб-приложение для ресторанов, кафе и заведений общественного питания. Позволяет гостям просматривать меню по QR-коду и делать заказы со столика, а администраторам — управлять меню, заказами и получать уведомления в Telegram.
 
-This contains everything you need to run your app locally.
+## 🌟 Основные возможности
 
-View your app in AI Studio: https://ai.studio/apps/8046c27b-e3fc-49be-bd90-40ed3fb432c3
+**Для гостей:**
+- 📱 Адаптивное и красивое электронное меню 
+- 🛒 Удобная корзина и оформление заказа прямо со столика
+- ✨ Современный UI/UX дизайн (Framer Motion анимации)
 
-## Run Locally
+**Для администраторов / заведения:**
+- 🔐 Защищенная панель управления (Dashboard)
+- 📊 Статистика заказов и выручки в реальном времени
+- 🍔 Управление категориями и позициями меню
+- 🔔 Интеграция с Telegram-ботом для моментальных уведомлений о новых заказах
+- 🗄 Облачная база данных (Supabase)
 
-**Prerequisites:**  Node.js
+## 🛠 Технологии
 
+- **Frontend:** React 19, Vite, TailwindCSS v4, Framer Motion, React Router v7, Lucide React
+- **Backend / BaaS:** Supabase (Database, Auth, Storage)
+- **Уведомления:** Telegram Bot API
+- **Язык разработки:** TypeScript / JavaScript
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 🚀 Быстрый старт
+
+### Требования
+- Node.js (v18+)
+- Проект в [Supabase](https://supabase.com/)
+
+### Установка
+
+1. **Клонируйте репозиторий и установите зависимости:**
+   ```bash
+   npm install
+   ```
+
+2. **Настройте переменные окружения:**
+   Скопируйте `.env.example` в `.env` (или `.env.local`) и укажите ключи:
+   ```env
+   VITE_SUPABASE_URL="ваш_supabase_url"
+   VITE_SUPABASE_ANON_KEY="ваш_supabase_anon_key"
+   VITE_TELEGRAM_BOT_TOKEN="токен_бота"
+   VITE_TELEGRAM_CHAT_ID="id_чата_админа"
+   ```
+
+3. **База данных:**
+   Примените миграции для настройки схемы базы данных. 
+   См. подробности в `QUICK_START.md`.
+   ```bash
+   npx tsx apply-migrations.ts
+   ```
+
+4. **Запуск сервера разработки:**
+   ```bash
+   npm run dev
+   ```
+
+5. Платформа будет доступна по адресу `http://localhost:3000`.
+
+## 📂 Структура проекта
+
+- `/src` — Исходный код React-приложения
+  - `/components` — Переиспользуемые UI компоненты
+  - `/pages` — Страницы приложения (Меню, Админка, Корзина)
+  - `/hooks` — Кастомные хуки (логика корзины, и т.д.)
+  - `/lib` — Настройки (Supabase client и утилиты)
+- `/supabase` — SQL миграции и настройки БД
+- `/public` — Статические ассеты
+
+## 📝 Лицензия
+
+Проект является частной собственностью. Все права защищены.
