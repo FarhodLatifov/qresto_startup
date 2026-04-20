@@ -33,7 +33,7 @@ BEGIN
     -- Insert Dishes (burgers)
     INSERT INTO dishes (restaurant_id, category_id, name, description, price, image_url, is_popular) VALUES
     (v_restaurant_id, v_cat_burgers, 'Чизбургер Классик', 'Котлета из мраморной говядины, сыр чеддер, свежие овощи и фирменный соус', 45, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=600&auto=format&fit=crop', true),
-    (v_restaurant_id, v_cat_burgers, 'Дабл Трабл', 'Двойная говяжья котлета, бекон, луковый джем, сырный соус', 65, 'https://images.unsplash.com/photo-1594212202868-654cb246d84d?q=80&w=600&auto=format&fit=crop', false),
+    (v_restaurant_id, v_cat_burgers, 'Дабл Трабл', 'Двойная говяжья котлета, бекон, луковый джем, сырный соус', 65, 'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=600&auto=format&fit=crop', false),
     (v_restaurant_id, v_cat_burgers, 'Чикенбургер', 'Хрустящее куриное филе, салат айсберг, помидоры, соус цезарь', 40, 'https://images.unsplash.com/photo-1606755962773-d324e0a13086?q=80&w=600&auto=format&fit=crop', false);
 
     -- Insert Dishes (soups)
