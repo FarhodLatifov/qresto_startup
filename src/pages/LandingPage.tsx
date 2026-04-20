@@ -179,13 +179,13 @@ export default function LandingPage() {
               {t('nav_features')}
             </button>
             <button onClick={() => scrollToSection('calculator')} className="text-sm font-medium text-white/70 hover:text-white transition-colors">
-              Выгода
+              {t('nav_calculator')}
             </button>
             <button onClick={() => scrollToSection('pricing')} className="text-sm font-medium text-white/70 hover:text-white transition-colors">
               {t('nav_pricing')}
             </button>
             <button onClick={() => scrollToSection('faq')} className="text-sm font-medium text-white/70 hover:text-white transition-colors">
-              FAQ
+              {t('faq_title')}
             </button>
           </nav>
 
@@ -203,7 +203,7 @@ export default function LandingPage() {
             </div>
             {user && !loading ? (
               <MagneticButton onClick={() => navigate('/admin')} className="text-sm font-medium bg-gold text-dark hover:bg-gold/90 transition-colors px-5 py-2 rounded-xl shadow-[0_0_15px_rgba(212,175,55,0.3)]">
-                Дашборд
+                {t('dashboard')}
               </MagneticButton>
             ) : (
               <MagneticButton onClick={() => navigate('/login')} className="text-sm font-medium bg-white/10 text-white hover:bg-white/20 border border-white/10 transition-colors px-5 py-2 rounded-xl">
@@ -231,14 +231,25 @@ export default function LandingPage() {
               <X className="w-8 h-8" />
             </button>
             <button onClick={() => scrollToSection('features')} className="text-2xl font-serif text-white hover:text-gold transition-colors">{t('nav_features')}</button>
-            <button onClick={() => scrollToSection('calculator')} className="text-2xl font-serif text-white hover:text-gold transition-colors">Выгода</button>
+            <button onClick={() => scrollToSection('calculator')} className="text-2xl font-serif text-white hover:text-gold transition-colors">{t('nav_calculator')}</button>
             <button onClick={() => scrollToSection('pricing')} className="text-2xl font-serif text-white hover:text-gold transition-colors">{t('nav_pricing')}</button>
-            <button onClick={() => scrollToSection('faq')} className="text-2xl font-serif text-white hover:text-gold transition-colors">FAQ</button>
+            <button onClick={() => scrollToSection('faq')} className="text-2xl font-serif text-white hover:text-gold transition-colors">{t('faq_title')}</button>
             {user && !loading ? (
-              <button onClick={() => navigate('/admin')} className="text-2xl font-serif text-white hover:text-gold transition-colors">Дашборд</button>
+              <button onClick={() => navigate('/admin')} className="text-2xl font-serif text-white hover:text-gold transition-colors">{t('dashboard')}</button>
             ) : (
               <button onClick={() => navigate('/login')} className="text-2xl font-serif text-white hover:text-gold transition-colors">{t('nav_login')}</button>
             )}
+            <div className="flex bg-white/5 p-1 rounded-lg border border-white/10 mt-4">
+              {(['ru', 'en'] as const).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => { setLang(l); setMobileMenuOpen(false); }}
+                  className={`px-5 py-2 text-sm font-medium rounded-md transition-colors ${lang === l ? 'bg-gold text-dark' : 'text-white/60 hover:text-white'}`}
+                >
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -259,11 +270,11 @@ export default function LandingPage() {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-serif leading-tight text-white drop-shadow-xl">
-              Увеличьте прибыль ресторана на <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-300">15%</span>
+              {t('hero_title_1')}<span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-300">15%</span>
             </h1>
             
             <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-xl">
-              Инновационное QR-меню с моментальными заказами. Избавьтесь от бумажных меню и очередей за счетом.
+              {t('hero_subtitle')}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -281,12 +292,12 @@ export default function LandingPage() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-            className="lg:w-1/2 relative flex justify-center perspective-[2000px]"
+            className="w-full mt-12 lg:mt-0 lg:w-1/2 relative flex justify-center perspective-[2000px]"
           >
             <motion.div 
               whileHover={{ rotateX: 5, rotateY: -10 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="relative w-full max-w-[320px] z-20"
+              className="relative w-[300px] sm:w-[320px] shrink-0 z-20 mx-auto"
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-gold/30 to-purple-500/10 rounded-[44px] blur-3xl opacity-50 block" />
               
@@ -332,10 +343,10 @@ export default function LandingPage() {
           >
             {[...Array(4)].map((_, i) => (
               <div key={i} className="flex gap-16 items-center px-8 text-white/50 text-sm font-medium tracking-widest uppercase">
-                  <span className="inline-flex items-center gap-2"><Sparkles className="w-4 h-4 text-gold"/> Без скачивания</span>
-                  <span className="inline-flex items-center gap-2"><Sparkles className="w-4 h-4 text-gold"/> Telegram уведомления</span>
-                  <span className="inline-flex items-center gap-2"><Sparkles className="w-4 h-4 text-gold"/> Быстрые заказы</span>
-                  <span className="inline-flex items-center gap-2"><Sparkles className="w-4 h-4 text-gold"/> Увеличение выручки</span>
+                  <span className="inline-flex items-center gap-2"><Sparkles className="w-4 h-4 text-gold"/> {t('marquee_1')}</span>
+                  <span className="inline-flex items-center gap-2"><Sparkles className="w-4 h-4 text-gold"/> {t('marquee_2')}</span>
+                  <span className="inline-flex items-center gap-2"><Sparkles className="w-4 h-4 text-gold"/> {t('marquee_3')}</span>
+                  <span className="inline-flex items-center gap-2"><Sparkles className="w-4 h-4 text-gold"/> {t('marquee_4')}</span>
               </div>
             ))}
           </motion.div>
@@ -346,8 +357,8 @@ export default function LandingPage() {
           <section id="features" className="py-24 pt-32">
             <ScrollReveal delay={0}>
               <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-serif text-white mb-4">Автоматизируйте рутину</h2>
-                <p className="text-white/50 text-lg max-w-2xl mx-auto">Дизайн "Bento Grid" демонстрирует мощь платформы QResto наглядно.</p>
+                <h2 className="text-4xl md:text-5xl font-serif text-white mb-4">{t('bento_title')}</h2>
+                <p className="text-white/50 text-lg max-w-2xl mx-auto">{t('bento_subtitle')}</p>
               </div>
             </ScrollReveal>
 
@@ -361,8 +372,8 @@ export default function LandingPage() {
                     <Smartphone className="w-7 h-7" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-serif text-white mb-2">Бесконтактное меню</h3>
-                    <p className="text-white/60 text-sm leading-relaxed">Гость сканирует QR-код на столе и мгновенно получает доступ к меню с сочными фотографиями блюд. Никаких бумажек и ожидания.</p>
+                    <h3 className="text-2xl font-serif text-white mb-2">{t('bento_1_title')}</h3>
+                    <p className="text-white/60 text-sm leading-relaxed">{t('bento_1_desc')}</p>
                   </div>
                 </div>
                 {/* Visual Decoration */}
@@ -380,8 +391,8 @@ export default function LandingPage() {
                   <BellRing className="w-10 h-10" />
                 </motion.div>
                 <div>
-                  <h3 className="text-xl font-serif text-white mb-2">Telegram Бот</h3>
-                  <p className="text-white/50 text-sm">Мгновенные оповещения для официантов прямо в их телефоне.</p>
+                  <h3 className="text-xl font-serif text-white mb-2">{t('bento_2_title')}</h3>
+                  <p className="text-white/50 text-sm">{t('bento_2_desc')}</p>
                 </div>
               </ScrollReveal>
 
@@ -391,8 +402,8 @@ export default function LandingPage() {
                   <BarChart3 className="w-7 h-7" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-serif text-white mb-2">Аналитика</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">Отслеживайте популярку блюд и статистику за каждый день прямо в дашборде.</p>
+                  <h3 className="text-xl font-serif text-white mb-2">{t('bento_3_title')}</h3>
+                  <p className="text-white/50 text-sm leading-relaxed">{t('bento_3_desc')}</p>
                 </div>
               </ScrollReveal>
 
@@ -403,10 +414,10 @@ export default function LandingPage() {
                 </div>
                 <div className="relative z-10 flex flex-col h-full justify-center w-2/3">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-white/80 text-xs font-medium w-fit mb-4">
-                    <Sparkles className="w-3 h-3 text-gold" /> Мгновенный старт
+                    <Sparkles className="w-3 h-3 text-gold" /> {t('bento_4_tag')}
                   </div>
-                  <h3 className="text-3xl font-serif text-white mb-3">Запуск за 15 минут</h3>
-                  <p className="text-white/60 text-sm leading-relaxed max-w-sm">Мы создали максимально простой интерфейс для поваров и менеджеров. Вы просто добавляете фото, цену и описание — готово.</p>
+                  <h3 className="text-3xl font-serif text-white mb-3">{t('bento_4_title')}</h3>
+                  <p className="text-white/60 text-sm leading-relaxed max-w-sm">{t('bento_4_desc')}</p>
                 </div>
               </ScrollReveal>
             </div>
@@ -417,7 +428,7 @@ export default function LandingPage() {
             <ScrollReveal>
               <div className="text-center mb-16">
                 <h2 className="text-4xl md:text-5xl font-serif text-white mb-4">{t('calc_title')}</h2>
-                <p className="text-white/50 text-lg max-w-2xl mx-auto">Инвестиции в QResto окупаются за считанные дни за счет увеличения оборачиваемости столов.</p>
+                <p className="text-white/50 text-lg max-w-2xl mx-auto">{t('calc_desc')}</p>
               </div>
             </ScrollReveal>
 
@@ -456,7 +467,7 @@ export default function LandingPage() {
                     </div>
                     
                     <p className="text-xs text-white/40 leading-relaxed italic border-l-2 border-gold/30 pl-4">
-                      Расчеты примерные и основаны на статистике увеличения заказов на 15% за счет красочного меню и отсутствия ожидания официанта.
+                      {t('calc_disclaimer')}
                     </p>
                   </div>
 
@@ -483,7 +494,7 @@ export default function LandingPage() {
             <ScrollReveal>
               <div className="text-center mb-16">
                 <h2 className="text-4xl md:text-5xl font-serif text-white mb-4">{t('pricing_title')}</h2>
-                <p className="text-white/50 text-lg max-w-2xl mx-auto">Все функции доступны сразу, без скрытых платежей.</p>
+                <p className="text-white/50 text-lg max-w-2xl mx-auto">{t('pricing_desc')}</p>
               </div>
             </ScrollReveal>
 
@@ -491,7 +502,7 @@ export default function LandingPage() {
               <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <div className="bg-white/5 border border-white/10 p-8 rounded-[40px] flex flex-col hover:border-gold/30 transition-all duration-500">
                   <h3 className="text-2xl font-serif text-white mb-2">{t('pricing_basic')}</h3>
-                  <div className="text-4xl font-light text-white mb-6">Бесплатно <span className="text-base text-white/40 font-sans">/ 14 дней</span></div>
+                  <div className="text-4xl font-light text-white mb-6">{t('pricing_free')} <span className="text-base text-white/40 font-sans">{t('pricing_14days')}</span></div>
                   <ul className="space-y-4 mb-10 flex-1 mt-4">
                     {[t('feature_qr'), t('feature_menu')].map((feat, i) => (
                       <li key={i} className="flex items-center gap-3 text-white/70">
@@ -500,7 +511,7 @@ export default function LandingPage() {
                     ))}
                   </ul>
                   <MagneticButton onClick={() => window.location.href='mailto:contact@qresto.tj'} className="w-full py-4 bg-white/5 border border-white/20 hover:bg-white/10 text-white rounded-2xl font-medium transition-colors">
-                    Связаться с нами
+                    {t('pricing_contact')}
                   </MagneticButton>
                 </div>
 
@@ -509,7 +520,7 @@ export default function LandingPage() {
                     {t('pricing_popular')}
                   </div>
                   <h3 className="text-2xl font-serif text-gold mb-2">{t('pricing_pro')}</h3>
-                  <div className="text-4xl font-light text-white mb-6">500 TJS <span className="text-base font-sans text-white/40">/ месяц</span></div>
+                  <div className="text-4xl font-light text-white mb-6">500 TJS <span className="text-base font-sans text-white/40">{t('pricing_month')}</span></div>
                   <ul className="space-y-4 mb-10 flex-1 mt-4">
                     {[t('feature_qr'), t('feature_menu'), t('feature_tg'), t('feature_stats')].map((feat, i) => (
                       <li key={i} className="flex items-center gap-3 text-white/90">
@@ -534,12 +545,12 @@ export default function LandingPage() {
                   <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold/20">
                      <Smartphone className="w-8 h-8 text-gold" />
                   </div>
-                  <h3 className="text-3xl font-serif text-white mb-2">Перейти в Демо</h3>
-                  <p className="text-white/50 text-sm">Полноразмерная версия гостевого интерфейса.</p>
+                  <h3 className="text-3xl font-serif text-white mb-2">{t('demo_section_title')}</h3>
+                  <p className="text-white/50 text-sm">{t('demo_section_desc')}</p>
                 </div>
                 <form onSubmit={handleDemoSubmit} className="space-y-5 relative z-10">
                   <div className="space-y-1">
-                    <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest pl-1">Ресторан</label>
+                    <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest pl-1">{t('demo_restaurant')}</label>
                     <input
                       value={demoSlug}
                       onChange={(e) => setDemoSlug(e.target.value)}
@@ -547,7 +558,7 @@ export default function LandingPage() {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest pl-1">Столик</label>
+                    <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest pl-1">{t('demo_table')}</label>
                     <input
                       value={demoTable}
                       onChange={(e) => setDemoTable(e.target.value)}
@@ -567,7 +578,7 @@ export default function LandingPage() {
             <ScrollReveal>
               <div className="text-center mb-16">
                 <h2 className="text-4xl md:text-5xl font-serif text-white mb-4">{t('faq_title')}</h2>
-                <p className="text-white/50 text-lg max-w-2xl mx-auto">Отвечаем на популярные вопросы рестораторов.</p>
+                <p className="text-white/50 text-lg max-w-2xl mx-auto">{t('faq_desc')}</p>
               </div>
             </ScrollReveal>
 
@@ -608,7 +619,7 @@ export default function LandingPage() {
       </main>
 
       {/* Footer CTA */}
-      <footer className="bg-[#050505] border-t border-white/10 py-24 relative overflow-hidden z-10">
+      <footer className="bg-[#050505] border-t border-white/10 py-12 md:py-24 relative overflow-hidden z-10">
         <div className="absolute inset-x-0 bottom-0 h-[600px] bg-gold/5 blur-[120px] pointer-events-none" />
         <ScrollReveal>
           <div className="max-w-7xl mx-auto px-6 text-center space-y-8 relative z-10">
@@ -619,14 +630,14 @@ export default function LandingPage() {
             <p className="text-white/50 text-xl max-w-2xl mx-auto">{t('cta_section_desc')}</p>
             <div className="pt-8">
               <MagneticButton onClick={() => window.location.href='mailto:contact@qresto.tj'} className="px-10 py-5 bg-white text-black hover:bg-gray-200 rounded-2xl font-semibold text-xl transition-colors shadow-[0_10px_40px_rgba(255,255,255,0.2)] hover:-translate-y-1 transform">
-                Оставить заявку
+                {t('pricing_contact')}
               </MagneticButton>
             </div>
-            <div className="mt-32 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-white/40 text-sm gap-4 font-mono">
-              <p>© {new Date().getFullYear()} QResto SaaS. All rights reserved.</p>
+            <div className="mt-16 md:mt-32 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-white/40 text-sm gap-4 font-mono">
+              <p>© {new Date().getFullYear()} {t('footer_rights')}</p>
               <div className="flex gap-8">
-                <a href="#" className="hover:text-gold transition-colors block">Privacy Policy</a>
-                <a href="#" className="hover:text-gold transition-colors block">Terms of Service</a>
+                <a href="#" className="hover:text-gold transition-colors block">{t('privacy_policy')}</a>
+                <a href="#" className="hover:text-gold transition-colors block">{t('terms_of_service')}</a>
               </div>
             </div>
           </div>

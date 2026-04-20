@@ -21,12 +21,12 @@ export function DishCard({ dish, index = 0, onAdd, quantity = 0 }: DishCardProps
       className="glass-panel overflow-hidden rounded-2xl flex flex-col"
     >
       {/* Image Section */}
-      <div className="relative aspect-[4/3] w-full bg-white/5 overflow-hidden">
+      <div className="relative w-full aspect-[4/3] shrink-0 bg-white/5 overflow-hidden">
         {dish.image_url ? (
           <img
             src={dish.image_url}
             alt={dish.name}
-            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
             loading="lazy"
             referrerPolicy="no-referrer"
           />
@@ -70,11 +70,12 @@ export function DishCard({ dish, index = 0, onAdd, quantity = 0 }: DishCardProps
             )}
             <motion.button
               whileTap={{ scale: 0.9 }}
+              whileHover={dish.is_available ? { scale: 1.05 } : {}}
               onClick={() => onAdd(dish)}
               disabled={!dish.is_available}
               className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
                 dish.is_available 
-                  ? 'bg-white/10 hover:bg-gold hover:text-dark text-white' 
+                  ? 'bg-white/10 hover:bg-gold hover:text-dark text-white shadow-lg' 
                   : 'bg-white/5 text-white/30 cursor-not-allowed'
               }`}
               aria-label="Добавить в корзину"

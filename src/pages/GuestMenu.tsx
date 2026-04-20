@@ -247,9 +247,9 @@ export default function GuestMenu() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-[#0B0B10] to-black text-white">
+    <div className="min-h-screen bg-gradient-to-br from-black via-[#0B0B10] to-black text-white overflow-x-hidden">
       <div className="max-w-6xl mx-auto px-4 py-10">
-        <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+        <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8 mt-4">
           <div className="space-y-2">
             <p className="text-sm uppercase tracking-[0.3em] text-white/50">Добро пожаловать</p>
             <div className="flex items-center gap-4">
@@ -307,45 +307,48 @@ export default function GuestMenu() {
         </div>
 
         <div className="flex flex-col md:flex-row gap-8 items-start">
-          <div className="w-full md:w-1/4 flex md:flex-col gap-3 overflow-x-auto pb-4 md:pb-0 scrollbar-hide sticky top-6 z-10 bg-black/50 backdrop-blur-md -mx-4 px-4 md:mx-0 md:px-0">
-            <button
-              onClick={() => setActiveCategory(null)}
-              className={`whitespace-nowrap px-4 py-3 rounded-xl transition-all ${
-                activeCategory === null
-                  ? 'bg-gold text-dark font-medium shadow-lg'
-                  : 'bg-white/5 text-white/70 hover:bg-white/10'
-              }`}
-            >
-              Все
-            </button>
-            {categories.map((category) => (
+          <div className="-mx-4 md:mx-0 w-[100vw] md:w-1/4 sticky top-0 md:top-6 z-20 bg-black/80 md:bg-black/50 backdrop-blur-xl border-b border-white/5 md:border-none shadow-2xl md:shadow-none">
+            <div className="flex md:flex-col gap-3 overflow-x-auto snap-x snap-mandatory pb-4 md:pb-0 scrollbar-hide px-4 md:px-0 py-4 md:py-0 w-full">
               <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
+                onClick={() => setActiveCategory(null)}
                 className={`whitespace-nowrap px-4 py-3 rounded-xl transition-all ${
-                  activeCategory === category.id
-                    ? 'bg-gold text-dark font-medium shadow-lg'
-                    : 'bg-white/5 text-white/70 hover:bg-white/10'
+                  activeCategory === null
+                    ? 'bg-gold text-dark font-medium shadow-[0_0_15px_rgba(212,175,55,0.4)] snap-start'
+                    : 'bg-white/5 text-white/70 hover:bg-white/10 snap-start'
                 }`}
               >
-                {category.name}
+                Все меню
               </button>
-            ))}
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`whitespace-nowrap px-4 py-3 rounded-xl transition-all ${
+                    activeCategory === category.id
+                      ? 'bg-gold text-dark font-medium shadow-[0_0_15px_rgba(212,175,55,0.4)] snap-start'
+                      : 'bg-white/5 text-white/70 hover:bg-white/10 snap-start'
+                  }`}
+                >
+                  {category.name}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="grid flex-1 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AnimatePresence>
-              {filteredDishes.map((dish) => (
+            <AnimatePresence mode="popLayout">
+              {filteredDishes.map((dish, idx) => (
                 <motion.div
                   key={dish.id}
                   layout
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2 }}
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                  transition={{ duration: 0.3, delay: idx * 0.05 }}
                 >
                   <DishCard 
                     dish={dish} 
+                    index={idx}
                     onAdd={() => handleAddToCart(dish)} 
                     quantity={cart.find(item => item.dish.id === dish.id)?.quantity}
                   />
